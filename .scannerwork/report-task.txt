@@ -1,0 +1,6 @@
+projectKey=preCourseHell
+serverUrl=http://localhost:9000
+serverVersion=9.2.1.49989
+dashboardUrl=http://localhost:9000/dashboard?id=preCourseHell
+ceTaskId=AX5za-t9aQOiVE-kwDWV
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX5za-t9aQOiVE-kwDWV
