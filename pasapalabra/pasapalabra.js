@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 const Questions = [
   {
     letter: "a",
@@ -293,7 +294,7 @@ let correctAnswers = 0;
 // Functions
 function prepareRandomQuestions() {
   for (let i = 0; i < Questions.length; i++) {
-    if (parseInt(Math.random() * 2) === 1) {
+    if (parseInt(Math.random() * 2, 10) === 1) {
       Questions[i].question = QuestionBank[i].question;
       Questions[i].answer = QuestionBank[i].answer;
     }
