@@ -1,3 +1,6 @@
+/* eslint-disable no-inner-declarations */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-use-before-define */
 import "./style.css";
 import * as THREE from "three";
 import * as dat from "dat.gui";
@@ -11,17 +14,17 @@ const gui = new dat.GUI();
 const textureLoader = new THREE.TextureLoader();
 
 const yellowMatcap = textureLoader.load("/yellowMatcap.png");
-const blueMatcap = textureLoader.load("/coinRedMatcap.png"); //Maybe change this matcp with something more bright
+const blueMatcap = textureLoader.load("/coinRedMatcap.png"); // Maybe change this matcp with something more bright
 const purpleMatCap = textureLoader.load("/coinYellowMatcap.png");
 gui.hide();
 
 const parameters = {
   colorP1: 0x894949,
   colorP2: 0x177050,
-  //colorBoard: 0x753232
+  // colorBoard: 0x753232
 };
 
-//Here comes the loaders
+// Here comes the loaders
 const gltfLoader = new GLTFLoader();
 const dracoLoader = new DRACOLoader();
 
@@ -29,7 +32,7 @@ dracoLoader.setDecoderPath("/draco/");
 
 gltfLoader.setDRACOLoader(dracoLoader);
 
-let boardGroup = new THREE.Group();
+const boardGroup = new THREE.Group();
 
 const materialBoard = new THREE.MeshMatcapMaterial();
 const ball = new THREE.Mesh(
@@ -57,23 +60,23 @@ gltfLoader.load("/Connect4Board.glb", (gltf) => {
   scene.add(boardGroup);
 });
 
-const scene = new THREE.Scene(); //Scene creation
+const scene = new THREE.Scene(); // Scene creation
 
 const size = {
   height: window.innerHeight,
   width: window.innerWidth,
 };
 
-//Here comes the event Listener to resize our 3d window;
+// Here comes the event Listener to resize our 3d window;
 window.addEventListener("resize", () => {
-  //update sizes
+  // update sizes
   size.height = window.innerHeight;
   size.width = window.innerWidth;
-  //update camera
+  // update camera
   camera.aspect = size.width / size.height;
   camera.updateProjectionMatrix();
 
-  //update renderer
+  // update renderer
   renderer.setSize(size.width, size.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
@@ -116,6 +119,8 @@ window.addEventListener("click", () => {
         ubicatePieceColumn(7);
         robotMove();
         break;
+      default:
+        break;
     }
   }
 });
@@ -124,7 +129,7 @@ const camera = new THREE.PerspectiveCamera(75, size.width / size.height); // cam
 scene.add(camera);
 camera.position.z = 5;
 
-//Here I add the boxes for the raycaster
+// Here I add the boxes for the raycaster
 
 const column1 = new THREE.Mesh(
   new THREE.BoxBufferGeometry(1, 6, 1),
@@ -166,7 +171,7 @@ const hitBoxesColumns = [
 
 for (const hitBoxeColumn of hitBoxesColumns) {
   hitBoxeColumn.material.wireframe = true;
-  hitBoxeColumn.material.visible = false; //Hit box visivility
+  hitBoxeColumn.material.visible = false; // Hit box visivility
 }
 
 column1.position.x = -3;
@@ -176,10 +181,10 @@ column5.position.x = 1;
 column6.position.x = 2;
 column7.position.x = 3;
 scene.add(column1, column2, column3, column4, column5, column6, column7);
-const canvas = document.querySelector(".webGL"); //Renderer par
+const canvas = document.querySelector(".webGL"); // Renderer par
 
 const renderer = new THREE.WebGLRenderer({
-  canvas: canvas,
+  canvas,
   alpha: true,
 });
 
@@ -188,16 +193,13 @@ renderer.setSize(size.width, size.height);
 
 renderer.render(scene, camera);
 
-const clock = new THREE.Clock();
-
-const timePassed = 0;
-//raycaster
+// raycaster
 const raycaster = new THREE.Raycaster();
 
 let currentIntersect = null;
 const cameraRange = 5;
 const tick = () => {
-  //raycaster
+  // raycaster
   raycaster.setFromCamera(mouse, camera);
 
   const intersects = raycaster.intersectObjects(hitBoxesColumns);
@@ -208,18 +210,18 @@ const tick = () => {
 
   if (intersects.length) {
     if (!currentIntersect) {
-      //Here you enter the hitbox
+      // Here you enter the hitbox
     }
     intersects[0].object.material.color.set("red");
     currentIntersect = intersects[0];
   } else {
     if (currentIntersect) {
-      //Here you exit the hitbox
+      // Here you exit the hitbox
     }
     currentIntersect = null;
   }
 
-  //update the camera
+  // update the camera
 
   camera.position.x = Math.sin(mouse.x * 0.1) * cameraRange;
 
@@ -236,7 +238,7 @@ const tick = () => {
 
 tick();
 
-//This is the function to update the 3d board to create the gamepieces and place them
+// This is the function to update the 3d board to create the gamepieces and place them
 
 const pieceGeometry = new THREE.CylinderBufferGeometry(0.4, 0.4, 0.1, 32);
 const pieceMaterialP1 = new THREE.MeshMatcapMaterial();
@@ -244,7 +246,7 @@ const pieceMaterialP2 = new THREE.MeshMatcapMaterial();
 pieceMaterialP1.matcap = blueMatcap;
 pieceMaterialP2.matcap = purpleMatCap;
 
-const groupPieces = []; //This arrays groups the pieces to delete them all after
+const groupPieces = []; // This arrays groups the pieces to delete them all after
 
 function create3DPiece(x, y, pMaterial) {
   const actualPiece = new THREE.Mesh(pieceGeometry, pMaterial);
@@ -261,12 +263,12 @@ function ubicatePiece(piece, x, y) {
   piece.position.y += -y;
 }
 
-//I will start creating all the logic of the game here **************************
+// I will start creating all the logic of the game here **************************
 
-//Lets start creating the board for the game
+// Lets start creating the board for the game
 const gameBoardBack = [];
-const boardWidth = 7 + 2; //Important that the widht its 2 units more for auxiliar walls
-const boardHeightt = 6 + 2; //Importnat that the height too its 2 units more for auxiliar floor and ceiling
+const boardWidth = 7 + 2; // Important that the widht its 2 units more for auxiliar walls
+const boardHeightt = 6 + 2; // Importnat that the height too its 2 units more for auxiliar floor and ceiling
 const empty = 0;
 let player1Turn = true;
 const p1 = 1;
@@ -293,7 +295,7 @@ function createBackBoard() {
 }
 
 createBackBoard();
-//CAUTION the board axis are inverted so to acces an element you have to gameBoarBack[y][x]
+// CAUTION the board axis are inverted so to acces an element you have to gameBoarBack[y][x]
 
 console.table(gameBoardBack);
 let pieceMoved = false;
@@ -304,7 +306,7 @@ function ubicatePieceColumn(column) {
       console.log("YOU can't place a piece here"); // THIS COLUMN ITS FULL TAKE ACTION
       validPlays.splice(column - 1, 1);
     }
-    if (i == 1) {
+    if (i === 1) {
       validPlays.splice(column - 1, 1);
     }
     if (gameBoardBack[i][column] === empty) {
@@ -315,8 +317,8 @@ function ubicatePieceColumn(column) {
         player1Turn = true;
         makeMovePlayer(p2, pieceMaterialP2);
         checkDraw(i);
-        //the player 2 always ends the game if it's a draw
-      } //i only check for fraw if is the player 2 turn
+        // the player 2 always ends the game if it's a draw
+      } // i only check for fraw if is the player 2 turn
       pieceMoved = true;
     }
 
@@ -338,7 +340,7 @@ function ubicatePieceColumn(column) {
 function checkDraw(i) {
   let draw = true;
   if (i === 1) {
-    //If i its equal 1 you are in the last row and you check for a draw
+    // If i its equal 1 you are in the last row and you check for a draw
     for (let j = 1; j < boardWidth - 1; j++) {
       if (gameBoardBack[1][j] === empty) {
         draw = false;
@@ -354,7 +356,7 @@ function checkDraw(i) {
 }
 
 function checkConnect4(x, y, player) {
-  //I cant explain this so look the documentation(if there is one);
+  // I cant explain this so look the documentation(if there is one);
   checkRow(x, y, player);
   checkColumn(x, y, player);
   checkDiagonalOne(x, y, player);
@@ -392,7 +394,7 @@ function checkColumn(x, y, player) {
 }
 function checkDiagonalOne(x, y, player) {
   if (x <= y) {
-    let diagonalBase = {
+    const diagonalBase = {
       xs: 1,
       ys: y - (x - 1),
     };
@@ -427,7 +429,7 @@ function checkDiagonalOne(x, y, player) {
       }
     }
   } else {
-    let diagonalBase = {
+    const diagonalBase = {
       xs: x - (y - 1),
       ys: 1,
     };
@@ -466,7 +468,7 @@ function checkDiagonalOne(x, y, player) {
 
 function checkDiagonalTwo(x, y, player) {
   if (x + y <= 7) {
-    let diagonalBase = {
+    const diagonalBase = {
       xs: 1,
       ys: y + x - 1,
     };
@@ -501,7 +503,7 @@ function checkDiagonalTwo(x, y, player) {
       }
     }
   } else {
-    let diagonalBase = {
+    const diagonalBase = {
       xs: x,
       ys: 6,
     };
@@ -601,11 +603,11 @@ const botButton = document.querySelector(".bot");
 botButton.addEventListener("click", turnOnOffBot);
 function turnOnOffBot() {
   if (!botPlaying) {
-    //Here the bot start to play
+    // Here the bot start to play
     botPlaying = true;
     botButton.style.color = "red";
   } else {
-    //Here the robot is not gonna play the next game
+    // Here the robot is not gonna play the next game
     botPlaying = false;
     botButton.style.color = "black";
   }
@@ -614,8 +616,8 @@ function turnOnOffBot() {
 function robotMove() {
   if (botPlaying) {
     const moveIndex = Math.floor(Math.random() * validPlays.length);
-    console.log("this is the array of valid move" + validPlays);
-    console.log("this is the move.index" + moveIndex);
+    console.log(`this is the array of valid move${validPlays}`);
+    console.log(`this is the move.index${moveIndex}`);
     ubicatePieceColumn(validPlays[moveIndex]);
     console.log("robot moved");
   }
