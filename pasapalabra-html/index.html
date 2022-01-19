@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>Document</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+      defer
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Coda&family=Space+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <script src="pasapalabra.js" defer></script>
+  </head>
+  <body>
+    <div id="noScroll">
+      <div id="theBigText">PASA<br />PALABRA</div>
+      <div id="upperHalf">
+        <div id="WheelText">
+          <img id="mainWheel" src="FortuneWheel.png" alt="Wheel of fortune" />
+          <p id="paragraph">
+            This is the paragraph that i like This is a text to see how good of
+            a programmer i am when learning how to code clean and funcional html
+            an css code let see how it goes
+          </p>
+        </div>
+        <div id="scoreBox">
+          <img id="dollarBase" src="dollar.png" alt="DollarPicture" />
+          <a id="dollarSign">$</a>
+          <a id="scoreNum">000</a>
+        </div>
+      </div>
+      <div id="bottomHalf">
+        <p id="timer">3:00</p>
+        <div id="ContainerInput">
+          <input
+            type="text"
+            id="InputBox"
+            autocomplete="off"
+            autocorrect="off"
+          />
+        </div>
+      </div>
+      <audio id="dingAudio">
+        <source src="cleanAnswer.mp3" type="audio/mp3" />
+      </audio>
+      <audio id="endGameSound" autoplay="autoplay">
+        <source src="endGameSound.mp3" type="audio/mp3" />
+      </audio>
+      <audio id="wrongAns">
+        <source src="dinding.mp3" type="audio/mp3" />
+      </audio>
+    </div>
+  </body>
+</html>

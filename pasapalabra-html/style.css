@@ -1,0 +1,180 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Coda;
+}
+html {
+  font-size: 62.5%;
+  overflow-y: hidden;
+}
+body {
+  background-color: #41539b;
+  font-size: 1.6rem;
+  color: rgb(255, 253, 132);
+}
+#noScroll {
+  width: 100vw;
+  height: 100hw;
+  overflow: hidden;
+  position: absolute;
+}
+
+#theBigText {
+  font-size: 20rem;
+  position: absolute;
+  z-index: 10;
+  line-height: 40rem;
+  left: -130rem;
+}
+#upperHalf {
+  height: 100vh;
+  width: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+#WheelText {
+  height: 10rem;
+  width: 10rem;
+}
+#paragraph {
+  font-size: 3px;
+  z-index: 5;
+  padding-left: 41%;
+  padding-top: 51%;
+  width: 80%;
+}
+#mainWheel {
+  height: 10rem;
+  width: 10rem;
+  position: absolute;
+  z-index: -5;
+}
+#scoreBox {
+  width: 12rem;
+  height: 5rem;
+  z-index: -10;
+  position: absolute;
+  right: 60rem;
+  bottom: 20rem;
+}
+#dollarBase {
+  width: 50rem;
+  height: auto;
+  position: absolute;
+  z-index: -5;
+}
+#dollarSign {
+  color: #301c1f;
+  padding-left: 5rem;
+  padding-top: 3rem;
+  z-index: 5;
+  position: absolute;
+  font-size: 12rem;
+}
+#scoreNum {
+  color: #301c1f;
+  padding-left: 12rem;
+  padding-top: 3rem;
+  z-index: 5;
+  position: absolute;
+  font-size: 12rem;
+}
+
+#bottomHalf {
+  width: 60rem;
+  display: inline-flex;
+  justify-content: center;
+  position: absolute;
+}
+
+#timer {
+  font-size: 9rem;
+  position: absolute;
+}
+#ContainerInput {
+  width: 30rem;
+  height: 100vh;
+  margin-top: 50%;
+  margin-bottom: 10rem;
+}
+#InputBox {
+  background-color: #b31336;
+  border: 1rem solid #e0c486;
+  color: yellow;
+  padding-left: 0.5rem;
+  font-style: bold;
+  font-size: 3rem;
+  width: 100%;
+  height: 70px;
+  text-transform: uppercase;
+}
+
+@media only screen and (max-width: 480px) {
+  #upperHalf {
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  #paragraph {
+    font-size: 3px;
+    z-index: 5;
+    padding-left: 41%;
+    padding-top: 51%;
+    width: 80%;
+  }
+  #scoreBox {
+    position: absolute;
+    width: 12rem;
+    height: 5rem;
+    right: 3.3rem;
+    z-index: -10;
+    bottom: auto;
+  }
+  #dollarBase {
+    width: 12rem;
+    height: auto;
+    position: absolute;
+    z-index: -5;
+  }
+  #dollarSign {
+    color: #301c1f;
+    padding-left: 15%;
+    padding-top: 9%;
+    z-index: 5;
+    position: absolute;
+    font-size: 2.4rem;
+  }
+  #scoreNum {
+    color: #301c1f;
+    padding-left: 29%;
+    padding-top: 9%;
+    z-index: 5;
+    position: absolute;
+    font-size: 2.4rem;
+  }
+  #bottomHalf {
+    width: 100%;
+    padding-top: 2rem;
+  }
+  #ContainerInput {
+    margin-top: 2rem;
+    width: 30rem;
+    height: auto;
+    margin: 0;
+  }
+  #InputBox {
+    background-color: #b31336;
+    border: 1rem solid #e0c486;
+    color: yellow;
+    padding-left: 0.5rem;
+    font-style: bold;
+    font-size: 3rem;
+    width: 100%;
+    height: 70px;
+    text-transform: uppercase;
+  }
+}
