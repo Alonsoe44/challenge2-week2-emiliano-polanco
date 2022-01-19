@@ -47,3 +47,21 @@ if (Number.isNaN(numA) || Number.isNaN(numB)) {
 } else {
   OperatePrint(numA, numB);
 }
+
+// TESSSSSSSTINGDSAFL;KJDSFL;KDSFJL;DSKJF
+
+describe("Given a roundNum function", () => {
+  describe("When it receives a 9", () => {
+    test("Then it should return a 9", () => {
+      // Arrange
+      const testNumber = 9;
+      const expectedRoundedNumber = 9;
+
+      // Act
+      const roundedNumber = roundNum(testNumber);
+
+      // Assert
+      expect(roundedNumber).toBe(expectedRoundedNumber);
+    });
+  });
+});
