@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-use-before-define */
 // Key variables for the game
 let turnCounter = 0;
 let foundLine = false;
@@ -37,7 +39,7 @@ function createBingoCardBoard() {
 } // end function
 function randomIndexPoolNumbers() {
   // This number its the index of the poolNumbers
-  return parseInt(Math.random() * poolNumbers.length);
+  return parseInt(Math.random() * poolNumbers.length, 10);
 } // end function
 
 const generateBall = () => {
@@ -57,6 +59,12 @@ const checkBallinBingoCard = () => {
     }
   }
   console.table(bingoCard.board); // Feedback to the user
+}; // end function
+
+const scoreGenerator = () => {
+  const Score = parseInt(1000 / turnCounter, 10);
+  players.push({ Name, Score });
+  console.table(players);
 }; // end function
 
 const checkLineinBingoCard = () => {
@@ -95,11 +103,6 @@ const checkLineinBingoCard = () => {
     console.log("🅱🅸🅽🅶🅾");
     console.log("🅱🅸🅽🅶🅾");
   }
-}; // end function
-let scoreGenerator = () => {
-  const Score = parseInt(1000 / turnCounter);
-  players.push({ Name, Score });
-  console.table(players);
 }; // end function
 const offerCard = () => {
   // This is a recursive function that keeps offering a card until you are happy

@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 // Lets define some variables
 
 // Variables to store the main values i use do do the operations
@@ -190,7 +191,7 @@ function addComma() {
 // Operation functions
 function TimeToSum() {
   writing = false;
-  if (!isNaN(operator)) {
+  if (!Number.isNaN(operator)) {
     operationTime(parseFloat(screenInput.value));
     screenInput.value = firstValue;
   } else {
@@ -202,7 +203,7 @@ function TimeToSum() {
 }
 function TimeToRest() {
   writing = false;
-  if (!isNaN(operator)) {
+  if (!Number.isNaN(operator)) {
     operationTime(parseFloat(screenInput.value));
     screenInput.value = firstValue;
   } else {
@@ -216,7 +217,7 @@ function TimeToRest() {
 }
 function TimeToMulti() {
   writing = false;
-  if (!isNaN(operator)) {
+  if (!Number.isNaN(operator)) {
     operationTime(parseFloat(screenInput.value));
     screenInput.value = firstValue;
   } else {
@@ -228,7 +229,7 @@ function TimeToMulti() {
 }
 function TimeToDivi() {
   writing = false;
-  if (!isNaN(operator)) {
+  if (!Number.isNaN(operator)) {
     operationTime(parseFloat(screenInput.value));
     screenInput.value = firstValue;
   } else {
@@ -285,7 +286,7 @@ function operationTime(newValue) {
 
 function negTail() {
   const theString = screenInput.value;
-  if (theString[theString.length - 1] == "-") {
+  if (theString[theString.length - 1] === "-") {
     firstValue *= -1;
   }
 }
